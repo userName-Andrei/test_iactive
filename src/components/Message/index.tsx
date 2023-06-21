@@ -1,39 +1,55 @@
-import React, { FC } from 'react';
+import { FC, memo } from 'react';
 import Avatar from '../../assets/images/svg/default-user.svg';
-import {FaRegStar, FaStar} from 'react-icons/fa';
+import { IMessage } from '../../types/messageTypes';
+import stringCutter from '../../utils/stringCutter';
+import { nanoid } from '@reduxjs/toolkit';
+import MediaBlock from '../MediaBlock';
+import Favorite from '../Favorite';
 
 import styles from './Message.module.css';
 
-const Message: FC = () => {
+interface MessageProps {
+    message: IMessage
+}
 
-    const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+const Message: FC<MessageProps> = ({message}) => {
+
+    const {id, author, attachments, channel, content, date, region} = message;
+
+    const timeBlock = new Date(date).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+
+    const mediaBlock = attachments.length === 0 ? null :
+                       attachments.map(media => <MediaBlock key={nanoid()} type={media.type} url={media.url} />);
+
+    const contentBlock = stringCutter(content, 200);
+
+    if (!message) {
+        return null
+    }
 
     return (
-
-        <li className={styles.message} >
+        <li className={styles.message}>
             <div className={styles.top}>
                 <div className={styles.avatar}>
                     <img src={Avatar} alt="avatar"/>
-                    <p>{time}</p>
+                    <p>{timeBlock}</p>
                 </div>
 
                 <div className={styles.textBlock}>
                     <div className={styles.textBlock__top}>
                         <div className={styles.author}>
-                            <p>Nina Malofeeva</p>
-                            <span>Текст поста в соц. сетях если это комментарий</span>
+                            <p>{author}</p>
+                            <span>{channel}</span>
                         </div>
-                        <div className={styles.favorite}>
-                            <FaRegStar />
-                        </div>
+                        <Favorite id={id} />
                     </div>
 
                     <div className={styles.content}>
-                    "Россия 1" не боится снимать сериалы о сложных и неоднозначных периодах в истории нашей страны. Это и "В круге первом", и "Жизнь и судьба", и "Зулейха". Идёт работа над "Одним днём Ивана Денисовича". Вопрос Антону Златопольскому -почему вы считаете
+                        {contentBlock}
                     </div>
 
                     <div className={styles.media}>
-                        <img src={"https://media.iactive.pro/ZLmYglhqeDD/messages_images/telegram/503vbxSX1Lm5ijF3OKnmlaxrlf4Rzu1l.jpg"} alt="media-news" className={styles.media__item}/>
+                        {mediaBlock}
                     </div>
                 </div>
             </div>
@@ -48,4 +64,4 @@ const Message: FC = () => {
     );
 };
 
-export default Message;
+export default memo(Message);

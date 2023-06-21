@@ -1,3 +1,9 @@
+export interface IResponseMessage {
+    Messages: IMessage[];
+    dislikeImages: [];
+    likeImages: [];
+}
+
 export interface IMessage {
     id: string;
     date: string;
@@ -8,7 +14,7 @@ export interface IMessage {
     attachments: IMessageAttachment[];
 }
 
-interface IMessageAttachment {
+export interface IMessageAttachment {
     type: string;
     url: string;
 }

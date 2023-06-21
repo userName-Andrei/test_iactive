@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
+
+.App {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    font-family: 'Lato', sans-serif;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #0088EE;
+  color: white;
+  opacity: .9;
+  transition: .3s;
+}
+
+.btn:active {
+  opacity: 1;
+}

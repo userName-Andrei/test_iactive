@@ -4,6 +4,7 @@
     --color-blue: #0088EE;
 
     padding: 10px;
+    transition: .4s;
 }
 
 .message:not(:last-child) {
@@ -35,7 +36,7 @@
 }
 
 .textBlock {
-
+    flex: 1 1 auto;
 }
 
 .textBlock__top {
@@ -53,18 +54,13 @@
 .author > p {
     font-size: 16px;
     line-height: 13px;
+    margin-bottom: 6px;
 }
 
 .author > span {
     font-size: 12px;
     font-style: italic;
     line-height: 9px;
-}
-
-.favorite {
-    font-size: 20px;
-    color: var(--color-blue);
-    cursor: pointer;
 }
 
 .content {
@@ -79,12 +75,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    border-radius: 4px;
-}
-
-.media__item {
-    width: 146px;
-    object-fit: cover;
 }
 
 .tags {

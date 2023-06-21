@@ -1,33 +1,40 @@
+import { IResponseMessage, IMessage } from "../types/messageTypes";
 import axios from "../utils/axios";
-
-const URL = "http://a0830433.xsph.ru/";
 
 export class MessageService {
     static async getFirstMessages() {
-        const res = await axios.post(URL, {
+        const res = await axios.post<IResponseMessage>("", {
             actionName: "MessagesLoad",
             messageId: 0,
         });
 
-        return res.data();
+        if (res.status !== 200) console.error(res.data);
+
+        return res;
     }
 
     static async getNewMessage(lastMessageId: string | number) {
-        const res = await axios.post(URL, {
+        const res = await axios.post<
+            Pick<IResponseMessage, "Messages"> | string
+        >("", {
             actionName: "MessagesLoad",
             messageId: lastMessageId,
         });
 
-        return res.data();
+        if (res.status !== 200) console.error(res.data);
+
+        return res;
     }
 
     static async getOldMessages(lastMessageId: string | number) {
-        const res = await axios.post(URL, {
+        const res = await axios.post("", {
             actionName: "MessagesLoad",
             oldMessages: true,
             messageId: lastMessageId,
         });
 
-        return res.data();
+        console.error(res.data);
+
+        return res;
     }
 }
