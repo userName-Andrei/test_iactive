@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/test_iactive/static/css/main.ce192fa4.css",
+    "main.js": "/test_iactive/static/js/main.c4934d5a.js",
+    "static/media/default-user.svg": "/test_iactive/static/media/default-user.b6bb7a79e57faf23c40822791391e133.svg",
+    "index.html": "/test_iactive/index.html",
+    "main.ce192fa4.css.map": "/test_iactive/static/css/main.ce192fa4.css.map",
+    "main.c4934d5a.js.map": "/test_iactive/static/js/main.c4934d5a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ce192fa4.css",
+    "static/js/main.c4934d5a.js"
+  ]
+}
